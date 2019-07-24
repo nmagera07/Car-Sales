@@ -10,7 +10,7 @@ import { carReducer } from './store/reducers'
 import 'bulma/css/bulma.css';
 import './styles.scss';
 
-const store = creatStore(carReducer)
+const store = createStore(carReducer)
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
