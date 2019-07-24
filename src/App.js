@@ -10,7 +10,7 @@ import { addFeature } from './store/actions'
 import { dispatch } from 'rxjs/internal/observable/range';
 
 const App = (props) => {
-
+  console.log(props)
   const [state, setState] = useState({
     additionalPrice: 0,
     car: {
@@ -34,18 +34,18 @@ const App = (props) => {
 
   const buyItem = item => {
     // dipsatch an action here to add an item
-    
+    props.addFeature(item)
   };
 
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={props.carData.car} />
-        <AddedFeatures car={props.carData.car} />
+        <Header car={props.car} />
+        <AddedFeatures car={props.car} store={props.store}/>
       </div>
       <div className="box">
-        <AdditionalFeatures store={props.carData.store} />
-        <Total car={props.carData.car} additionalPrice={props.carData.additionalPrice} />
+        <AdditionalFeatures store={props.store} addFeature={buyItem}/>
+        <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
   );
@@ -54,7 +54,9 @@ const App = (props) => {
 const mapStateToProps = state => {
   console.log()
   return {
-    carData: state.carData
+    additionalPrice: state.additionalPrice,
+    car: state.car,
+    store: state.store
 }
 }
 

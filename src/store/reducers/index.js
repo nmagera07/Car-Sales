@@ -1,7 +1,7 @@
 import { ADD_FEATURE } from '../actions'
 
 const initialState = {
-    carData: {
+    
         additionalPrice: 0,
         car: {
             price: 26395,
@@ -16,16 +16,18 @@ const initialState = {
             { id: 3, name: 'Premium sound system', price: 500 },
             { id: 4, name: 'Rear spoiler', price: 250 }
         ]}
-        }
+        
 
 
 export const carReducer = (state = initialState, action) => {
-    console.log(state.carData.car)
+    console.log()
     switch (action.type) {
         case 'ADD_FEATURE':
             return {
                 ...state, 
-                carData: [...state.carData.car.features, action.payload]
+                 store: [...state.store, action.payload],
+                additionalPrice: state.additionalPrice + action.payload.price,
+                // car: [...state.car.features, action.payload]
             }
         default:
             return state
