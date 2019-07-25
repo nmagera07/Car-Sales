@@ -6,7 +6,7 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 import { connect } from 'react-redux';
 
-import { addFeature } from './store/actions'
+import { addFeature, removeFeature } from './store/actions'
 import { dispatch } from 'rxjs/internal/observable/range';
 
 const App = (props) => {
@@ -30,6 +30,7 @@ const App = (props) => {
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    props.removeFeature(item)
   };
 
   const buyItem = item => {
@@ -41,7 +42,7 @@ const App = (props) => {
     <div className="boxes">
       <div className="box">
         <Header car={props.car} />
-        <AddedFeatures car={props.car} store={props.store}/>
+        <AddedFeatures car={props.car} removeFeature={removeFeature}/>
       </div>
       <div className="box">
         <AdditionalFeatures store={props.store} addFeature={buyItem}/>
@@ -62,5 +63,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addFeature }
+  { addFeature, removeFeature}
 )(App)
